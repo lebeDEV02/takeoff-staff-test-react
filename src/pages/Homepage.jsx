@@ -1,9 +1,9 @@
 const Homepage = () => {
-    return (
-        <div>
-            <h1>Get started with React-Router 6</h1>
-        </div>
-    )
-}
+	return (
+		<div>
+			<h1>Это стартовая страница! Вы можете авторизоваться и увидеть контакты.</h1>
+		</div>
+	);
+};
 
-export {Homepage}
+export { Homepage };
