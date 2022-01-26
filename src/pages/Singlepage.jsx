@@ -1,6 +1,5 @@
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import contacts from '../mock-data/contacts';
 
 const Singlepage = () => {
 	const { id } = useParams();
@@ -9,13 +8,13 @@ const Singlepage = () => {
 
 	const goBack = () => navigate(-1);
 
-	useEffect(() => {
-		setContact(contacts.filter((item) => item.id == id)[0]);
-	}, [id]);
+	// useEffect(() => {
+	// 	setContact(contacts.filter((item) => item.id == id)[0]);
+	// }, [id]);
 
 	return (
 		<div>
-			<button onClick={goBack}>Go back</button>
+			<button onClick={goBack}>Назад</button>
 			{contact && (
 				<>
 					<h1>{contact.username}</h1>

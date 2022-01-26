@@ -1,27 +1,28 @@
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../hook/useAuth';
+import { login, logout } from '../store/userSlice';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { useEffect } from 'react';
 const LoginPage = () => {
 	const navigate = useNavigate();
 	const location = useLocation();
-	const { signin, user, signout } = useAuth();
 
 	const fromPage = location.state?.from?.pathname || '/';
-
+	const dispatch = useDispatch();
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		const form = event.target;
-		const user = form.username.value;
-
-		signin(user);
+		dispatch(login({ user: event.target.username.value }));
 	};
+	const userInfo = useSelector((state) => state.user.user);
 
 	return (
 		<div>
-			{user ? (
+			{userInfo ? (
 				<div>
 					{' '}
 					Вы авторизованы и можете посетить <Link to="/contacts">страницу</Link> контактов!
-					<button onClick={() => signout(() => navigate('/login'))}>Выйти</button>
+					{/* <button onClick={() => signout(() => navigate('/login'))}>Выйти</button> */}
 				</div>
 			) : (
 				<div>

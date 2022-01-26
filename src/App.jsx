@@ -35,14 +35,7 @@ function App() {
 							</RequireAuth>
 						}
 					/>
-					<Route
-						path="contacts/:id/edit"
-						element={
-							<RequireAuth>
-								<Editpost />
-							</RequireAuth>
-						}
-					/>
+					<Route path="contacts/:id/edit" element={<Editpost />} />
 					<Route
 						path="contacts/new"
 						element={

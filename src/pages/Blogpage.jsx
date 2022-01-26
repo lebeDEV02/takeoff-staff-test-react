@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { BlogFilter } from '../components/BlogFilter';
-import contacts from '../mock-data/contacts';
 const Blogpage = () => {
 	const [searchParams, setSearchParams] = useSearchParams();
 	const [inputValue, setInputValue] = useState('');

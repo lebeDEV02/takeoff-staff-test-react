@@ -1,0 +1,15 @@
+.error-alert {
+	font-size: 18px;
+	color: red;
+}
+.submit-button {
+	background-color: transparent;
+	border: 1px solid #000;
+	border-radius: 20px;
+	padding: 10px 60px;
+	transition: all 0.3s;
+	cursor: pointer;
+	margin-top: 20px;
+	&:hover {
+	}
+}
