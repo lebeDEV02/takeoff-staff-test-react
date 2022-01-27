@@ -36,11 +36,7 @@ const Editpost = () => {
 		mode: 'onBlur',
 	});
 	const onSubmit = (data) => {
-		// console.log(contacts.filter((item) => item.id == id)[0]);
 		const { username, email, phone } = data;
-		// console.log(username, email, phone);
-		// contacts = [];
-		// console.log(contacts);
 		dispatch(editContact({ username, email, phone, id }));
 		goBack();
 	};
@@ -63,7 +59,6 @@ const Editpost = () => {
 									<TextField
 										sx={{ margin: '10px 0' }}
 										{...field}
-										defaultValue="aboba"
 										label={`старое значение: ${contact.username}`}
 									/>
 								)}
@@ -85,7 +80,6 @@ const Editpost = () => {
 									<TextField
 										sx={{ margin: '10px 0' }}
 										{...field}
-										defaultValue="aboba@aboba.com"
 										label={`старое значение: ${contact.email}`}
 									/>
 								)}
@@ -115,7 +109,6 @@ const Editpost = () => {
 									<TextField
 										sx={{ margin: '10px 0' }}
 										{...field}
-										defaultValue="13123213123213"
 										label={`старое значение: ${contact.phone}`}
 									/>
 								)}

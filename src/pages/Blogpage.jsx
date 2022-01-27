@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
 import { BlogFilter } from '../components/BlogFilter';
 import { useSelector, useDispatch } from 'react-redux';
+import { useParams, Link } from 'react-router-dom';
 
 const Blogpage = () => {
-	const [searchParams, setSearchParams] = useSearchParams();
 	const [inputValue, setInputValue] = useState('');
-	const userQuery = searchParams.get('user') || '';
+	const { id } = useParams();
 	const [filteredArray, setFilteredArray] = useState(
 		useSelector((state) => state.contacts.contacts),
 	);
@@ -29,7 +28,7 @@ const Blogpage = () => {
 				placheholder="Поиск..."
 				value={inputValue}
 				onChange={(e) => setInputValue(e.target.value)}></input>
-			<Link to="/contacts/new" style={{ margin: '1rem 0', display: 'inline-block' }}>
+			<Link to="/contacts/add" style={{ margin: '1rem 0', display: 'inline-block' }}>
 				Add new contact
 			</Link>
 			{filteredArray.map((user) => (
@@ -37,7 +36,7 @@ const Blogpage = () => {
 					<li>Username: {user.username}</li>
 					<li>Email: {user.email}</li>
 					<li>Phone: {user.phone}</li>
-					<Link to={`/contacts/${user.id}`}>Подробнее</Link>
+					<Link to={`/contacts/${user.id}/edit`}>Edit this contact</Link>
 				</ul>
 			))}
 		</div>

@@ -4,7 +4,6 @@ import { Homepage } from './pages/Homepage';
 import { Blogpage } from './pages/Blogpage';
 import { Createpost } from './pages/Createpost';
 import { Editpost } from './pages/Editpost';
-import { Singlepage } from './pages/Singlepage';
 import { Notfoundpage } from './pages/Notfoundpage';
 import { LoginPage } from './pages/Loginpage';
 
@@ -12,6 +11,7 @@ import { Layout } from './components/Layout';
 
 import { RequireAuth } from './hoc/RequireAuth';
 import { AuthProvider } from './hoc/AuthProvider';
+import AddContact from './pages/AddContact';
 
 function App() {
 	return (
@@ -27,11 +27,12 @@ function App() {
 							</RequireAuth>
 						}
 					/>
+					<Route index element={<Homepage />} />
 					<Route
-						path="contacts/:id"
+						path="contacts/add"
 						element={
 							<RequireAuth>
-								<Singlepage />
+								<AddContact />
 							</RequireAuth>
 						}
 					/>
