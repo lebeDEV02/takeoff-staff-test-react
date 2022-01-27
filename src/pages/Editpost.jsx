@@ -4,13 +4,16 @@ import TextField from '@mui/material/TextField';
 import FormControl from '@mui/material/FormControl';
 import { useForm, Controller } from 'react-hook-form';
 import Input from '@mui/material/Input';
+import { useDispatch, useSelector } from 'react-redux';
+import { editContact } from '../store/contactsSlice';
 import '../styles/edit.scss';
 import '../styles/global.scss';
 const Editpost = () => {
 	const { id } = useParams();
 	const navigate = useNavigate();
 	const [contact, setContact] = useState(null);
-
+	const [contacts, setcontacts] = useState(useSelector((state) => state.contacts.contacts));
+	const dispatch = useDispatch();
 	const goBack = () => navigate(-1);
 
 	useEffect(() => {
@@ -33,11 +36,13 @@ const Editpost = () => {
 		mode: 'onBlur',
 	});
 	const onSubmit = (data) => {
-		console.log(contacts.filter((item) => item.id == id)[0]);
+		// console.log(contacts.filter((item) => item.id == id)[0]);
 		const { username, email, phone } = data;
-		console.log(username, email, phone);
-		contacts = [];
-		console.log(contacts);
+		// console.log(username, email, phone);
+		// contacts = [];
+		// console.log(contacts);
+		dispatch(editContact({ username, email, phone, id }));
+		goBack();
 	};
 	return (
 		<div>
@@ -58,6 +63,7 @@ const Editpost = () => {
 									<TextField
 										sx={{ margin: '10px 0' }}
 										{...field}
+										defaultValue="aboba"
 										label={`старое значение: ${contact.username}`}
 									/>
 								)}
@@ -79,6 +85,7 @@ const Editpost = () => {
 									<TextField
 										sx={{ margin: '10px 0' }}
 										{...field}
+										defaultValue="aboba@aboba.com"
 										label={`старое значение: ${contact.email}`}
 									/>
 								)}
@@ -108,6 +115,7 @@ const Editpost = () => {
 									<TextField
 										sx={{ margin: '10px 0' }}
 										{...field}
+										defaultValue="13123213123213"
 										label={`старое значение: ${contact.phone}`}
 									/>
 								)}

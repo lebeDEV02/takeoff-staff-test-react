@@ -1,5 +1,6 @@
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Singlepage = () => {
 	const { id } = useParams();
@@ -7,10 +8,10 @@ const Singlepage = () => {
 	const [contact, setContact] = useState(null);
 
 	const goBack = () => navigate(-1);
-
-	// useEffect(() => {
-	// 	setContact(contacts.filter((item) => item.id == id)[0]);
-	// }, [id]);
+	const [contacts, setcontacts] = useState(useSelector((state) => state.contacts.contacts));
+	useEffect(() => {
+		setContact(contacts.filter((item) => item.id == id)[0]);
+	}, [id]);
 
 	return (
 		<div>

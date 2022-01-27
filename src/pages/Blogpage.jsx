@@ -1,12 +1,16 @@
 import { useState, useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { BlogFilter } from '../components/BlogFilter';
+import { useSelector, useDispatch } from 'react-redux';
+
 const Blogpage = () => {
 	const [searchParams, setSearchParams] = useSearchParams();
 	const [inputValue, setInputValue] = useState('');
 	const userQuery = searchParams.get('user') || '';
-	const [filteredArray, setFilteredArray] = useState(contacts);
-
+	const [filteredArray, setFilteredArray] = useState(
+		useSelector((state) => state.contacts.contacts),
+	);
+	const contacts = useSelector((state) => state.contacts.contacts);
 	useEffect(() => {
 		if (inputValue !== '') {
 			setFilteredArray(

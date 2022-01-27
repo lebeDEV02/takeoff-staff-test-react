@@ -76,21 +76,29 @@ const contactsSlice = createSlice({
 			});
 		},
 		removeContact(state, action) {
-			return state.filter((item) => item.id !== action.payload.id);
+			return state.contacts.filter((item) => item.id !== action.payload.id);
 		},
 		editContact(state, action) {
-			state.map((item) => {
-				if (item.id === action.id) {
-					return (state.contacts[id - 1] = {
-						...contacts[id - 1],
-						username: action.payload.username,
-						email: action.payload.email,
-						phone: action.payload.phone,
-					});
-				} else {
-					return item;
-				}
-			});
+			console.log(action.payload);
+			state.contacts[action.payload.id - 1] = {
+				id: action.payload.id,
+				username: action.payload.username,
+				email: action.payload.email,
+				phone: action.payload.phone,
+			};
+			// action.payload.map((item) => {
+			// 	if (item.id === id) {
+			// 		return (state.contacts[item.id - 1] = {
+			// 			...action[item.id - 1],
+			// username: action.payload.username,
+			// email: action.payload.email,
+			// phone: action.payload.phone,
+			// 		});
+			// 	} else {
+			// 		return item;
+			// 	}
+			// });
+			// console.log(state.contacts);
 		},
 	},
 });
