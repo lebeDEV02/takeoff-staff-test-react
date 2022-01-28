@@ -12,7 +12,10 @@ const LoginPage = () => {
 	const dispatch = useDispatch();
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		dispatch(login({ user: event.target.username.value }));
+		if (event.target.username.value !== '') {
+			console.log('yes');
+			dispatch(login({ user: event.target.username.value }));
+		}
 	};
 	const userInfo = useSelector((state) => state.user.user);
 

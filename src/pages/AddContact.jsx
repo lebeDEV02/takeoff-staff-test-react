@@ -3,6 +3,7 @@ import TextField from '@mui/material/TextField';
 import { useForm, Controller } from 'react-hook-form';
 import { addContact } from '../store/contactsSlice';
 import { useDispatch } from 'react-redux';
+import { AiOutlineUserAdd } from 'react-icons/ai';
 import '../styles/edit.scss';
 import '../styles/global.scss';
 export default function AddContact() {
@@ -29,7 +30,6 @@ export default function AddContact() {
 		const { username, email, phone } = data;
 		dispatch(addContact({ username, email, phone }));
 		goBack();
-		console.log(data);
 	};
 	return (
 		<div>
@@ -37,7 +37,7 @@ export default function AddContact() {
 			<button onClick={goBack}>Назад</button>
 			<form onSubmit={handleSubmit(onSubmit)} className="edit-form">
 				<label className="edit-form__username edit-form__label">
-					username пользователя:
+					Имя пользователя:
 					<Controller
 						{...register('username', { required: 'true' })}
 						name="username"
@@ -53,7 +53,7 @@ export default function AddContact() {
 					)}
 				</label>
 				<label className="edit-form__email edit-form__label">
-					email пользователя:
+					Email пользователя:
 					<Controller
 						{...register('email', { required: 'true', pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/ })}
 						name="email"
@@ -73,7 +73,7 @@ export default function AddContact() {
 					)}
 				</label>
 				<label className="edit-form__phone edit-form__label">
-					phone пользователя:
+					Телефон пользователя:
 					<Controller
 						{...register('phone', {
 							required: 'true',

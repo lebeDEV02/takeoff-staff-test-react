@@ -5,8 +5,8 @@ const Layout = () => {
 	return (
 		<>
 			<header>
-				<CustomLink to="/login">Login</CustomLink>
-				<CustomLink to="/contacts">Contacts</CustomLink>
+				<CustomLink to="/login">Авторизация</CustomLink>
+				<CustomLink to="/contacts">Контакты</CustomLink>
 			</header>
 
 			<main className="container">

@@ -1,0 +1,11 @@
+.contacts {
+	&__features {
+		display: flex;
+		justify-content: space-between;
+		align-items: baseline;
+	}
+}
+.user {
+	display: flex;
+	justify-content: space-between;
+}

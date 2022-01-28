@@ -42,13 +42,13 @@ const Editpost = () => {
 	};
 	return (
 		<div>
-			<h1>Изменить пользователя с id {id}</h1>
+			<h1>Изменить параметры пользователя</h1>
 			<button onClick={goBack}>Назад</button>
 			{contact && (
 				<>
 					<form onSubmit={handleSubmit(onSubmit)} className="edit-form">
 						<label className="edit-form__username edit-form__label">
-							Изменить username пользователя:
+							Изменить имя пользователя:
 							<Controller
 								{...register('username', { required: 'true' })}
 								name="username"
@@ -96,7 +96,7 @@ const Editpost = () => {
 							)}
 						</label>
 						<label className="edit-form__phone edit-form__label">
-							Изменить phone пользователя:
+							Изменить телефон пользователя:
 							<Controller
 								{...register('phone', {
 									required: 'true',

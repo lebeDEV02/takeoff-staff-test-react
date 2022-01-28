@@ -75,33 +75,20 @@ const contactsSlice = createSlice({
 				phone: action.payload.phone,
 			});
 		},
-		removeContact(state, action) {
-			return state.contacts.filter((item) => item.id !== action.payload.id);
+		deleteContact(state, action) {
+			state.contacts = state.contacts.filter((item) => item.id !== action.payload.id);
+			state.contacts = state.contacts.map((item, index) => ({ ...item, id: index + 1 }));
 		},
 		editContact(state, action) {
-			console.log(action.payload);
 			state.contacts[action.payload.id - 1] = {
 				id: action.payload.id,
 				username: action.payload.username,
 				email: action.payload.email,
 				phone: action.payload.phone,
 			};
-			// action.payload.map((item) => {
-			// 	if (item.id === id) {
-			// 		return (state.contacts[item.id - 1] = {
-			// 			...action[item.id - 1],
-			// username: action.payload.username,
-			// email: action.payload.email,
-			// phone: action.payload.phone,
-			// 		});
-			// 	} else {
-			// 		return item;
-			// 	}
-			// });
-			// console.log(state.contacts);
 		},
 	},
 });
-export const { addContact, removeContact, editContact } = contactsSlice.actions;
+export const { addContact, deleteContact, editContact } = contactsSlice.actions;
 
 export default contactsSlice.reducer;
