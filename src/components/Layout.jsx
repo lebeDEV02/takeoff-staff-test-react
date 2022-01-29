@@ -4,9 +4,13 @@ import { CustomLink } from './CustomLink';
 const Layout = () => {
 	return (
 		<>
-			<header>
-				<CustomLink to="/login">Авторизация</CustomLink>
-				<CustomLink to="/contacts">Контакты</CustomLink>
+			<header className="header">
+				<CustomLink className="header__link" to="/login">
+					Авторизация
+				</CustomLink>
+				<CustomLink className="header__link" to="/contacts">
+					Контакты
+				</CustomLink>
 			</header>
 
 			<main className="container">

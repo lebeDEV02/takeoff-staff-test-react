@@ -1,42 +1,67 @@
 import { useLocation, useNavigate, Link } from 'react-router-dom';
-import { useAuth } from '../hook/useAuth';
-import { login, logout } from '../store/userSlice';
+import { useForm, Controller } from 'react-hook-form';
+
 import { useSelector, useDispatch } from 'react-redux';
+import { login } from '../store/userSlice';
 
-import { useEffect } from 'react';
+import TextField from '@mui/material/TextField';
+import '../styles/pages/login.scss';
+
 const LoginPage = () => {
-	const navigate = useNavigate();
-	const location = useLocation();
-
-	const fromPage = location.state?.from?.pathname || '/';
 	const dispatch = useDispatch();
-	const handleSubmit = (event) => {
-		event.preventDefault();
-		if (event.target.username.value !== '') {
-			console.log('yes');
-			dispatch(login({ user: event.target.username.value }));
-		}
-	};
 	const userInfo = useSelector((state) => state.user.user);
-
+	const {
+		control,
+		handleSubmit,
+		formState: { isValid },
+		register,
+		reset,
+		formState: { errors },
+	} = useForm({
+		defaultValues: {
+			loginData: '',
+		},
+		mode: 'onBlur',
+	});
+	const onSubmit = (data) => {
+		dispatch(login({ user: data.loginData }));
+	};
 	return (
-		<div>
+		<div className="login">
 			{userInfo ? (
-				<div>
+				<>
 					{' '}
-					Вы авторизованы и можете посетить <Link to="/contacts">страницу</Link> контактов!
-					{/* <button onClick={() => signout(() => navigate('/login'))}>Выйти</button> */}
-				</div>
+					Вы авторизованы и можете посетить{' '}
+					<Link className="login__link" to="/contacts">
+						страницу
+					</Link>{' '}
+					контактов!
+				</>
 			) : (
-				<div>
-					<h1>Login page</h1>
-					<form onSubmit={handleSubmit}>
-						<label>
-							Name: <input name="username" />
+				<>
+					<h1 className="login__title">Страница авторизации</h1>
+					<form onSubmit={handleSubmit(onSubmit)} className="login__form login-form">
+						<label className="login-form__label">
+							Логин
+							<Controller
+								{...register('loginData', { required: 'true' })}
+								name="loginData"
+								control={control}
+								ref={null}
+								sx={{ marginTop: '10px' }}
+								render={({ field }) => <TextField sx={{ margin: '10px 0' }} {...field} />}
+							/>
+							{errors.loginData?.type === 'required' && (
+								<p className="login-form__error-alert error-alert">
+									Поле обязательно для заполнения
+								</p>
+							)}
 						</label>
-						<button type="submit">Login</button>
+						<button type="submit" className="submit-button" disabled={!isValid}>
+							Войти
+						</button>
 					</form>
-				</div>
+				</>
 			)}
 		</div>
 	);

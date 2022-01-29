@@ -1,3 +1,78 @@
+@import './imports/imports';
+@import './imports/mixins';
+* {
+	box-sizing: border-box;
+}
+
+:root {
+	--color-bg: #2c2c32;
+	--color-active: #0f7dc6;
+}
+
+header,
+body {
+	font-family: 'Manrope', sans-serif;
+	font-size: 20px;
+}
+
+body {
+	margin: 0;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+		'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+header {
+	background-color: var(--color-bg);
+	padding: 2rem 0;
+	text-align: center;
+	font-weight: 700;
+	font-size: 18px;
+	display: flex;
+	align-items: flex-end;
+	justify-content: flex-end;
+}
+header > a {
+	color: white;
+	text-decoration: none;
+	padding: 0 1rem;
+}
+header > a:hover {
+	text-decoration: underline;
+}
+
+h1 {
+	text-align: center;
+	margin-top: 0;
+}
+
+.container {
+	max-width: 900px;
+	padding-left: 2rem;
+	padding-right: 2rem;
+	margin: 0 auto;
+}
+
+main {
+	min-height: calc(100vh - 85px - 22px);
+	padding-top: 1.5rem;
+	padding-bottom: 1.5rem;
+}
+
+main a {
+	text-decoration: none;
+	color: var(--color-bg);
+}
+main a:hover {
+	text-decoration: underline;
+}
+
+.active {
+	color: var(--color-active);
+	cursor: default;
+}
+
 .error-alert {
 	font-size: 18px;
 	color: red;
@@ -10,6 +85,23 @@
 	transition: all 0.3s;
 	cursor: pointer;
 	margin-top: 20px;
-	&:hover {
+}
+.return-button {
+	background-color: transparent;
+	font-size: 24px;
+	border: none;
+	margin-bottom: 20px;
+	cursor: pointer;
+	display: flex;
+}
+
+.edit-contact,
+.add-contact {
+	@include displayFlex;
+	&__label {
+		@include displayFlex;
+	}
+	&__field {
+		margin-top: 20px;
 	}
 }

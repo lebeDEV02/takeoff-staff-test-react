@@ -1,21 +1,25 @@
 import { useState, useEffect } from 'react';
-import { BlogFilter } from '../components/BlogFilter';
+import { Link } from 'react-router-dom';
+
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams, Link } from 'react-router-dom';
+import { deleteContact } from '../store/contactsSlice';
+
 import { BsFillTrashFill } from 'react-icons/bs';
 import { AiFillEdit } from 'react-icons/ai';
-import { deleteContact } from '../store/contactsSlice';
 import { AiOutlineUserAdd } from 'react-icons/ai';
-import '../styles/blogpage.scss';
 import { TextField } from '@mui/material';
+import '../styles/pages/contacts.scss';
 
-const Blogpage = () => {
+const Contactspage = () => {
 	const [inputValue, setInputValue] = useState('');
-	const { id } = useParams();
 	const [filteredArray, setFilteredArray] = useState(
 		useSelector((state) => state.contacts.contacts),
 	);
+
 	const dispatch = useDispatch();
+	const deleteSelectedContact = (user) => {
+		dispatch(deleteContact(user));
+	};
 	const contacts = useSelector((state) => state.contacts.contacts);
 	useEffect(() => {
 		if (inputValue !== '') {
@@ -29,25 +33,26 @@ const Blogpage = () => {
 		}
 	}, [inputValue, contacts]);
 
-	const deleteSelectedContact = (user) => {
-		dispatch(deleteContact(user));
-	};
 	return (
-		<div>
-			<h1>Ваши контакты</h1>
+		<div className="contacts">
+			<h1 className="contacts__title">Ваши контакты</h1>
 			<div className="contacts__features">
 				<TextField
+					className="contacts__search-input search-input"
 					id="outlined-basic"
 					label="Поиск..."
 					variant="outlined"
 					value={inputValue}
 					onChange={(e) => setInputValue(e.target.value)}
 				/>
-				<Link to="/contacts/add" style={{ margin: '1rem 0', display: 'inline-block' }}>
+				<Link
+					className="contacts__add-user"
+					to="/contacts/add"
+					style={{ margin: '1rem 0', display: 'inline-block' }}>
 					<AiOutlineUserAdd />
 				</Link>
 			</div>
-			<ul className="users-list">
+			<ul className="contacts__users-list users-list">
 				{filteredArray.map((user) => (
 					<li className="users-list__user user" key={user.id}>
 						<div>
@@ -56,10 +61,12 @@ const Blogpage = () => {
 							<p>Телефон: {user.phone}</p>
 						</div>
 						<div className="user__buttons">
-							<Link to={`/contacts/${user.id}/edit`}>
+							<Link className="user__edit-button" to={`/contacts/${user.id}/edit`}>
 								<AiFillEdit />
 							</Link>
-							<BsFillTrashFill onClick={() => deleteSelectedContact(user)}></BsFillTrashFill>
+							<BsFillTrashFill
+								onClick={() => deleteSelectedContact(user)}
+								className="user__delete-button"></BsFillTrashFill>
 						</div>
 					</li>
 				))}
@@ -68,4 +75,4 @@ const Blogpage = () => {
 	);
 };
 
-export { Blogpage };
+export { Contactspage };

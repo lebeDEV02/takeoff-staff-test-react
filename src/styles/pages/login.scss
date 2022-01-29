@@ -1,0 +1,14 @@
+@import '../imports/colors';
+
+.login {
+	&__link {
+		color: $darkblue;
+	}
+}
+
+.login-form {
+	&__label {
+		display: flex;
+		flex-direction: column;
+	}
+}

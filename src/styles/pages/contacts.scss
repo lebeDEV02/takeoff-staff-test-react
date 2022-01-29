@@ -4,8 +4,19 @@
 		justify-content: space-between;
 		align-items: baseline;
 	}
+	&__add-user {
+		font-size: 20px;
+	}
 }
 .user {
 	display: flex;
 	justify-content: space-between;
+	&__buttons {
+		font-size: 20px;
+		cursor: pointer;
+	}
+	&__delete-button {
+		cursor: pointer;
+		margin-left: 10px;
+	}
 }
